@@ -9,7 +9,7 @@ A simple and robust Cloudflare Worker to fetch JSON data from any URL. It acts a
 -   Fetch JSON data from any URL.
 -   Bypass CORS restrictions.
 -   Uses a standard `User-Agent` to mimic a real browser.
--   Allows you to specify `Referer` and `Origin` headers.
+-   Allows you to specify `Referer`, `Origin`, and `Authorization` headers.
 -   Easy to deploy and use.
 
 ## How to Use
@@ -22,6 +22,14 @@ To fetch JSON from a simple endpoint, you just need to provide the `url` paramet
 
 ```bash
 curl "https://your-worker-name.workers.dev/?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fgithub"
+```
+
+### Example with Authorization
+
+You can provide an `Authorization` header to access protected endpoints.
+
+```bash
+curl "https://your-worker-name.workers.dev/?url=https%3A%2F%2Fapi.example.com%2Fdata&authorization=Basic%20dG9rZW46cGFzc3dvcmQ="
 ```
 
 ### Advanced Example
@@ -39,6 +47,7 @@ curl "https://your-worker-name.workers.dev/?url=https%3A%2F%2Fapi.example.com%2F
 | `url`     | The URL of the JSON endpoint to fetch.    | Yes      |
 | `referer` | The `Referer` header to send.             | No       |
 | `origin`  | The `Origin` header to send.              | No       |
+| `authorization` | The `Authorization` header to send.   | No       |
 
 ## Deployment
 

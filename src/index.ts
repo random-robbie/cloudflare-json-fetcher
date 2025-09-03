@@ -12,10 +12,11 @@ app.get(
       url: z.string().url(),
       referer: z.string().optional(),
       origin: z.string().optional(),
+      authorization: z.string().optional(),
     })
   ),
   async (c) => {
-    const { url, referer, origin } = c.req.valid("query");
+    const { url, referer, origin, authorization } = c.req.valid("query");
 
     try {
       const headers = {
@@ -29,6 +30,10 @@ app.get(
 
       if (origin) {
         headers["Origin"] = origin;
+      }
+
+      if (authorization) {
+        headers["Authorization"] = authorization;
       }
 
       const response = await fetch(url, {
